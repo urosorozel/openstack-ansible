@@ -222,6 +222,16 @@ haproxy_default_services:
       haproxy_backend_options:
         - "httpchk GET /"
   - service:
+      haproxy_service_name: ironic_inspector
+      haproxy_backend_nodes: "{{ groups['ironic_inspector'] | default([]) }}"
+      haproxy_ssl: "{{ haproxy_ssl }}"
+      haproxy_port: 5050
+      haproxy_balance_type: http
+      haproxy_backend_options:
+        - "httpchk GET /"
+      haproxy_backend_arguments:
+        - "http-check expect rstring .*"
+  - service:
       haproxy_service_name: rabbitmq_mgmt
       haproxy_backend_nodes: "{{ groups['rabbitmq'] | default([]) }}"
       haproxy_ssl: "{{ haproxy_ssl }}"
