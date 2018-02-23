@@ -186,6 +186,11 @@ ironic_git_repo: https://git.openstack.org/openstack/ironic
 ironic_git_install_branch: 4ca48b4f60d51e1b0ba8546fd1499270a7ceab09 # HEAD of "stable/pike" as of 13.05.2018
 ironic_git_project_group: ironic_all
 
+## Ironic inspector
+ironic_inspector_git_repo: https://git.openstack.org/openstack/ironic-inspector
+ironic_inspector_git_install_branch: 3b9e4c065655550ff6c5076d1f7c9129bdf413ee #35828784d5124dfc66842a790282f9f7d03251fe 
+ironic_inspector_git_project_group: ironic_inspector_all
+
 ## Magnum service
 magnum_git_repo: https://git.openstack.org/openstack/magnum
 magnum_git_install_branch: fa04f3d3352fda5b31145be5e29acc2ee3d0481d # HEAD of "stable/pike" as of 13.05.2018
