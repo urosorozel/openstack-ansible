@@ -212,7 +212,7 @@ ironic_git_project_group: ironic_all
 
 ## Ironic inspector
 ironic_inspector_git_repo: https://git.openstack.org/openstack/ironic-inspector
-ironic_inspector_git_install_branch: c312669bde68ffbbc22e115a4b0f4796bb613dd2 # HEAD of "master" as of 28.05.2018
+ironic_inspector_git_install_branch: 1eb1f6cc7cc5ae98a74304b40ffd8334d93210b6 #c312669bde68ffbbc22e115a4b0f4796bb613dd2 # HEAD of "master" as of 28.05.2018
 ironic_inspector_git_project_group: ironic_inspector_all
 
 
