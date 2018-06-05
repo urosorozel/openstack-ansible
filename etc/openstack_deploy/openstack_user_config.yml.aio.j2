@@ -94,6 +94,8 @@ global_overrides:
         net_name: "flat"
         group_binds:
           - neutron_linuxbridge_agent
+          - ironic_api_container
+          - ironic_inspector_container
     - network:
         container_bridge: "br-vlan"
         container_type: "veth"
