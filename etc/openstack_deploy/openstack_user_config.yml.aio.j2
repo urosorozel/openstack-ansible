@@ -6,6 +6,7 @@ cidr_networks:
 {% if bootstrap_host_scenario in ["translations", "octavia"] %}
   lbaas: 172.29.252.0/22
 {% endif %}
+  ironic: 10.30.40.0/24
   container: 172.29.236.0/22
   tunnel: 172.29.240.0/22
   storage: 172.29.244.0/22
@@ -94,8 +95,18 @@ global_overrides:
         net_name: "flat"
         group_binds:
           - neutron_linuxbridge_agent
-          - ironic_api_container
+    - network:
+        group_binds:
+          - ironic_api_container        # api included so tftp override works
           - ironic_inspector_container
+        container_bridge: "br-ironic"
+        host_bind_override: "eth13"
+        container_type: "veth"
+        container_interface: "eth13"
+        type: "flat"
+# This should really be called "host", but os_tempest hard codes it to "flat".
+        net_name: "ironic"
+        ip_from_q: "ironic"
     - network:
         container_bridge: "br-vlan"
         container_type: "veth"
