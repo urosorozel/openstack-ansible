@@ -188,7 +188,7 @@ ironic_git_project_group: ironic_all
 
 ## Ironic inspector
 ironic_inspector_git_repo: https://git.openstack.org/openstack/ironic-inspector
-ironic_inspector_git_install_branch: 3b9e4c065655550ff6c5076d1f7c9129bdf413ee #35828784d5124dfc66842a790282f9f7d03251fe 
+ironic_inspector_git_install_branch: 99c88629ad879e5c50c113f2fcd62f49a711ce3f
 ironic_inspector_git_project_group: ironic_inspector_all
 
 ## Magnum service
