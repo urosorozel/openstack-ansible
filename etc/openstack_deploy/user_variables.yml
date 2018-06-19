@@ -19,9 +19,8 @@
 ###
 
 ## Debug and Verbose options.
-debug: True
-openstack_service_publicuri_proto: http
-haproxy_ssl: False
+debug: false
+
 ## Common Glance Overrides
 # Set glance_default_store to "swift" if using Cloud Files backend
 # or "rbd" if using ceph backend; the latter will trigger ceph to get

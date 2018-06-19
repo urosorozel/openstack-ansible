@@ -15,7 +15,8 @@
 
 ## General options
 debug: True
-
+openstack_service_publicuri_proto: http
+haproxy_ssl: False
 ## Tempest settings
 tempest_public_subnet_cidr: 172.29.248.0/22
 tempest_public_subnet_allocation_pools: "172.29.249.110-172.29.249.200"
@@ -177,8 +178,8 @@ neutron_plugin_base:
   - neutron_lbaas.services.loadbalancer.plugin.LoadBalancerPluginv2
 
 ## Always setup tempest, the resources for it, then execute tests
-tempest_install: yes
-tempest_run: yes
+tempest_install: no
+tempest_run: no
 
 {% if nodepool_dir.stat.exists %}
 # Disable chronyd in OpenStack CI
