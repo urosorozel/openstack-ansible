@@ -13,12 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+{% raw %}
 # Overrides to get ironic working in aio
 ironic_tftp_server_address: "{{ container_networks.ironic_address.address }}"
 # Management bridge in aio is not connected to any nic, just use public api endpoints
 ironic_openstack_api_url: "http://{{ external_lb_vip_address }}:6385"
 ironic_swift_endpoint: "http://{{ external_lb_vip_address }}:8080"
 ironic_neutron_cleaning_network_uuid: "ironic-network"
+{% endraw %}
 
 ## General options
 debug: True

@@ -102,6 +102,7 @@ global_overrides:
         group_binds:
           - neutron_linuxbridge_agent
           - ironic_api_container        # api included so tftp override works
+          - ironic_conductor_container
           - ironic_inspector_container
         container_bridge: "br-ironic"
         host_bind_override: "eth15"
