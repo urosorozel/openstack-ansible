@@ -243,6 +243,11 @@ ironic_git_install_branch: fed7c4df0684f6530c59c8d6b264bf080da0af6b # HEAD of "s
 ironic_git_project_group: ironic_all
 ironic_git_track_branch: stable/queens
 
+## Ironic inspector
+ironic_inspector_git_repo: https://git.openstack.org/openstack/ironic-inspector
+ironic_inspector_git_install_branch: 04dc40d4c84ac2d7bf2c0747a247c1749299133d # HEAD of "stable/queens" as 18.08.2018
+ironic_inspector_git_project_group: ironic_inspector_all
+
 
 ## Magnum service
 magnum_git_repo: https://git.openstack.org/openstack/magnum
