@@ -256,7 +256,7 @@ ironic_git_track_branch: stable/rocky
 
 ## Ironic inspector
 ironic_inspector_git_repo: https://git.openstack.org/openstack/ironic-inspector
-ironic_inspector_git_install_branch: c312669bde68ffbbc22e115a4b0f4796bb613dd2 # HEAD of "master" as of 28.05.2018
+ironic_inspector_git_install_branch: 9b6133b1f73ff3e3df3af5bfabc6772ddd5389c7 # HEAD of "master" as of 03.12.2018
 ironic_inspector_git_project_group: ironic_inspector_all
 
 
