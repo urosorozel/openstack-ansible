@@ -6,7 +6,7 @@ cidr_networks:
 {% if 'octavia' in bootstrap_host_services %}
   lbaas: 172.29.252.0/22
 {% endif %}
-  ironic: 10.30.40.0/24
+  ironic: 172.30.0.0/22
   container: 172.29.236.0/22
   tunnel: 172.29.240.0/22
   storage: 172.29.244.0/22
@@ -19,6 +19,10 @@ used_ips:
 {% if 'octavia' in bootstrap_host_services %}
   - "172.29.252.1,172.29.252.50"
   - "172.29.252.100"
+{% endif %}
+{% if 'ironic' in bootstrap_host_services %}
+  - "172.30.0.1,172.30.0.50"
+  - "172.30.0.100"
 {% endif %}
   - "172.29.236.1,172.29.236.50"
   - "172.29.236.100"
@@ -101,9 +105,9 @@ global_overrides:
           - ironic_api_container        # api included so tftp override works
           - ironic_inspector_container
         container_bridge: "br-ironic"
-        host_bind_override: "eth13"
+        host_bind_override: "eth15"
         container_type: "veth"
-        container_interface: "eth13"
+        container_interface: "eth15"
         type: "flat"
 # This should really be called "host", but os_tempest hard codes it to "flat".
         net_name: "ironic"
