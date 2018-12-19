@@ -6,7 +6,9 @@ cidr_networks:
 {% if 'octavia' in bootstrap_host_services %}
   lbaas: 172.29.252.0/22
 {% endif %}
+{% if 'ironic' in bootstrap_host_services %}
   ironic: 172.30.0.0/22
+{% endif %}
   container: 172.29.236.0/22
   tunnel: 172.29.240.0/22
   storage: 172.29.244.0/22

@@ -75,7 +75,7 @@
           Kind: veth
         Peer:
           Name: eth14
-     - NetDev:
+      - NetDev:
           Name: br-ironic-veth
           Kind: veth
         Peer:
