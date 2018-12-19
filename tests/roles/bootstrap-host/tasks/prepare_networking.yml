@@ -40,6 +40,9 @@
       - NetDev:
           Name: dummy-lbaas
           Kind: dummy
+      - NetDev:
+          Name: dummy-ironic
+          Kind: dummy
 
       - NetDev:
           Name: br-mgmt
@@ -58,6 +61,9 @@
           Kind: bridge
       - NetDev:
           Name: br-lbaas
+          Kind: bridge
+      - NetDev:
+          Name: br-ironic
           Kind: bridge
 
       - NetDev:
