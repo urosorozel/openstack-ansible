@@ -97,7 +97,7 @@
 - name: os_ironic
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-os_ironic
-  version: 7faf822e4d35ec965ce4b9e59ff51893f047724b
+  version: 6ecf38f1296080a33366528ad40d513539138925
 - name: os_ironic_inspector
   scm: git
   src: https://github.com/urosorozel/os_ironic_inspector

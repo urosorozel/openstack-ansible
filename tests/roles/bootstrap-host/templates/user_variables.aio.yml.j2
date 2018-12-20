@@ -207,3 +207,11 @@ openstack_user_kernel_options:
 neutron_lbaas_octavia: True
 octavia_management_net_subnet_cidr: "{{ (bootstrap_host_container_tech == 'nspawn') | ternary('172.29.240.0/22', '172.29.252.0/22') }}"
 {% endif %}
+
+# Overrides to get ironic working in aio
+ironic_tftp_server_address: "{{ container_networks.ironic_address.address }}"
+ironic_swift_endpoint: "https://{{ external_lb_vip_address }}:8080"
+ironic_neutron_cleaning_network_uuid: "ironic-network"
+ironic_neutron_provisioning_network_name: "ironic-network"
+ironic_inspector_pxe_append_params: "ipa-insecure=1"
+ironic_pxe_append_params: "ipa-insecure=1"
