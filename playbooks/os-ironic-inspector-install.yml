@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Installation and setup of Ironic inspector
-  hosts: ironic_inspector_all
+  hosts: ironic_inspector_all,ironic_conductor
   gather_facts: "{{ osa_gather_facts | default(True) }}"
   user: root
   environment: "{{ deployment_environment_variables | default({}) }}"
