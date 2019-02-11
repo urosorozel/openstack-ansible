@@ -177,8 +177,8 @@ cache_timeout: {{ cache_timeout }}
 lxc_container_backing_store: "{{ lxc_container_backing_store }}"
 
 ## Always setup tempest, the resources for it, then execute tests
-tempest_install: yes
-tempest_run: yes
+tempest_install: no
+tempest_run: no
 
 {% if nodepool_dir.stat.exists %}
 # Disable chronyd in OpenStack CI
@@ -216,10 +216,9 @@ ironic_neutron_cleaning_network_uuid: "ironic-network"
 ironic_neutron_provisioning_network_name: "ironic-network"
 ironic_inspector_pxe_append_params: "systemd.journald.forward_to_console=yes console=tty0 console=ttyS0,115200n8 coreos.autologin ipa-insecure=1 ipa-debug=1"
 ironic_pxe_append_params: "systemd.journald.forward_to_console=yes console=tty0 console=ttyS0,115200n8 coreos.autologin ipa-insecure=1 ipa-debug=1"
-{% endraw %}
-
 # Enable ironic ipxe
 ironic_httpboot_enabled: False
 
 # Enable ironic inspector
 ironic_inspector_ironic_enable: True
+{% endraw %}
