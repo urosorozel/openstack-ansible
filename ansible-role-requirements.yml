@@ -97,11 +97,11 @@
 - name: os_ironic
   scm: git
   src: https://github.com/urosorozel/openstack-ansible-os_ironic
-  version: c07328893e207fb6671e018e07077be3e6eee628
+  version: 6c1277bf0be2a7d51b133bd3058b804c63b0fa3a
 - name: os_ironic_inspector
   scm: git
   src: https://github.com/urosorozel/os_ironic_inspector
-  version: 4b295970ad7c54455fe1bf07b44255a56d686257
+  version: 7441512050b16fb3c3f6940156d3008a3480386f
 - name: os_magnum
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-os_magnum
