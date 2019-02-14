@@ -15,64 +15,39 @@
 
 
 component_skel:
-  ironic_api:
+  ironic_inspector:
     belongs_to:
-      - ironic_all
-  ironic_conductor:
+      - ironic_inspector_all
+  ironic_inspector_server:
     belongs_to:
-      - ironic_all
-  ironic_server:
-    belongs_to:
-      - ironic_all
-      - ironic_servers
-  ironic_compute:
-    belongs_to:
-      - nova_all
+      - ironic_inspector_servers
 
 
 container_skel:
-  ironic_api_container:
+  ironic_inspector_container:
     belongs_to:
-      - ironic-infra_containers
+      - ironic-inspector-infra_containers
     contains:
-      - ironic_api
-      - ironic_conductor
-  ironic_server_container:
+      - ironic_inspector
+  ironic_inspector_server_container:
     belongs_to:
-      - ironic-server_containers
+      - ironic-inspector-server_containers
     contains:
-      - ironic_server
+      - ironic_inspector_server
     properties:
       is_metal: true
-  ironic_compute_container:
-    belongs_to:
-      - ironic-compute_containers
-    contains:
-      - ironic_compute
-      - nova_compute
-      - nova_scheduler
-#      - neutron_linuxbridge_agent
-#      - neutron_openvswitch_agent
-    properties:
-      is_metal: false
 
 
 physical_skel:
-  ironic-infra_containers:
+  ironic-inspector-infra_containers:
     belongs_to:
       - all_containers
-  ironic-infra_hosts:
+  ironic-inspector-infra_hosts:
     belongs_to:
       - hosts
-  ironic-server_containers:
+  ironic-inspector-server_containers:
     belongs_to:
       - all_containers
-  ironic-server_hosts:
-    belongs_to:
-      - hosts
-  ironic-compute_containers:
-    belongs_to:
-      - all_containers
-  ironic-compute_hosts:
+  ironic-inspector-server_hosts:
     belongs_to:
       - hosts
