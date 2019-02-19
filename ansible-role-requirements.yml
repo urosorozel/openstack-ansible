@@ -125,9 +125,12 @@
   trackbranch: stable/stein
 - name: os_ironic
   scm: git
-  src: https://opendev.org/openstack/openstack-ansible-os_ironic
-  version: stable/stein
-  trackbranch: stable/stein
+  src: https://github.com/urosorozel/openstack-ansible-os_ironic
+  version: 74af66985cdccd08efd6416ff2eeb9f4c2800cae
+- name: os_ironic_inspector
+  scm: git
+  src: https://github.com/urosorozel/os_ironic_inspector
+  version: 3e94456f13b3f814c2e88d8ba34e555946d86237
 - name: os_magnum
   scm: git
   src: https://opendev.org/openstack/openstack-ansible-os_magnum
