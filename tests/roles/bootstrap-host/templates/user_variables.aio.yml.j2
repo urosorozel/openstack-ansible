@@ -216,9 +216,25 @@ ironic_neutron_cleaning_network_uuid: "ironic-network"
 ironic_neutron_provisioning_network_name: "ironic-network"
 ironic_inspector_pxe_append_params: "systemd.journald.forward_to_console=yes console=tty0 console=ttyS0,115200n8 coreos.autologin ipa-insecure=1 ipa-debug=1"
 ironic_pxe_append_params: "systemd.journald.forward_to_console=yes console=tty0 console=ttyS0,115200n8 coreos.autologin ipa-insecure=1 ipa-debug=1"
-# Enable ironic ipxe
-ironic_httpboot_enabled: False
 
 # Enable ironic inspector
 ironic_inspector_ironic_enable: True
+# Enable ironic ipxe
+ironic_httpboot_enabled: True
+# Use swift as webserver
+ironic_httpboot_use_swift: True
+# Overcome issue with selfsigned certs and ipxe
+swift_service_publicuri_proto: "http"
+# Hack to modify only swift service
+haproxy_extra_services:
+  - service:
+      haproxy_service_name: swift_proxy
+      haproxy_backend_nodes: "{{ groups['swift_proxy'] | default([]) }}"
+      haproxy_ssl: False
+      haproxy_balance_alg: source
+      haproxy_port: 8080
+      haproxy_balance_type: http
+      haproxy_backend_options:
+        - "httpchk GET /healthcheck HTTP/1.0\\r\\nUser-agent:\\ osa-haproxy-healthcheck"
+      haproxy_service_enabled: "{{ groups['swift_proxy'] is defined and groups['swift_proxy'] | length > 0 }}"
 {% endraw %}
