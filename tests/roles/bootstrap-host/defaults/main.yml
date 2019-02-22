@@ -192,5 +192,5 @@ bootstrap_host_container_tech: "{{ (bootstrap_host_scenario is search('nspawn'))
 lxc_container_backing_store: dir
 
 VIPs:
-  external_hostname: ironic-public.local
-  internal_hostname: ironic-private.local
+  external_hostname: ironic-public.local.net
+  internal_hostname: ironic-private.local.net
