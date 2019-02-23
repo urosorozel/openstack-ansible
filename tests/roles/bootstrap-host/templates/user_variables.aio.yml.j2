@@ -244,7 +244,7 @@ lxc_container_networks: {}
 # Overrides to get ironic working in aio
 {% raw %}
 ironic_tftp_server_address: "{{ container_networks.ironic_address.address }}"
-ironic_swift_endpoint: "https://{{ external_lb_vip_address }}:8080"
+ironic_swift_endpoint: "http://{{ external_lb_vip_address }}:8080"
 ironic_neutron_cleaning_network_uuid: "ironic-network"
 ironic_neutron_provisioning_network_name: "ironic-network"
 ironic_inspector_pxe_append_params: "systemd.journald.forward_to_console=yes console=tty0 console=ttyS0,115200n8 coreos.autologin ipa-insecure=1 ipa-debug=1"
