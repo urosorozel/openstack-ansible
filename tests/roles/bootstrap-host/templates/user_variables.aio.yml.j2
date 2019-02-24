@@ -238,9 +238,6 @@ haproxy_extra_services:
         - "httpchk GET /healthcheck HTTP/1.0\\r\\nUser-agent:\\ osa-haproxy-healthcheck"
       haproxy_service_enabled: "{{ groups['swift_proxy'] is defined and groups['swift_proxy'] | length > 0 }}"
 
-# Update scheduler filter
-nova_scheduler_default_filters: 'AggregateInstanceExtraSpecsFilter, RetryFilter, AvailabilityZoneFilter, RamFilter, AggregateRamFilter, ComputeFilter, AggregateCoreFilter, DiskFilter, AggregateDiskFilter, AggregateNumInstancesFilter, AggregateIoOpsFilter, ComputeCapabilitiesFilter, ImagePropertiesFilter, ServerGroupAntiAffinityFilter, ServerGroupAffinityFilter, NUMATopologyFilter'
-
 # Don't remove dnsmasq package from host
 lxc_hosts_remove_distro_packages:
 {% endraw %}
