@@ -240,4 +240,6 @@ haproxy_extra_services:
 
 # Don't remove dnsmasq package from host
 lxc_hosts_remove_distro_packages:
+# Add DNS servers for inspector
+ironic_inspector_dhcp_nameservers: "172.30.0.100,192.168.122.100"
 {% endraw %}
