@@ -242,4 +242,7 @@ haproxy_extra_services:
 lxc_hosts_remove_distro_packages:
 # Add DNS servers for inspector
 ironic_inspector_dhcp_nameservers: "172.30.0.100,192.168.122.100"
+
+# Update scheduler filter (aggregates have to exist)
+nova_scheduler_default_filters: "AggregateInstanceExtraSpecsFilter, RetryFilter, AvailabilityZoneFilter, RamFilter, AggregateRamFilter, ComputeFilter, AggregateCoreFilter, DiskFilter, AggregateDiskFilter, AggregateNumInstancesFilter, AggregateIoOpsFilter, ComputeCapabilitiesFilter, ImagePropertiesFilter, ServerGroupAntiAffinityFilter, ServerGroupAffinityFilter, NUMATopologyFilter"
 {% endraw %}
