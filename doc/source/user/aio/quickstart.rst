@@ -73,6 +73,13 @@ system packages are upgraded and then reboot into the new kernel:
    # yum install git
    # reboot
 
+.. note::
+
+   Before rebooting, in ``/etc/sysconfig/selinux``, make sure that
+   ``SELINUX=enforcing``is changed to ``SELINUX=disabled``.
+   SELinux enabled is not currently supported in OpenStack-Ansible
+   for CentOS/RHEL due to a lack of maintainers for the feature.
+
 .. code-block:: shell-session
 
    ## openSUSE
@@ -123,14 +130,6 @@ version.
 
 The next step is to bootstrap Ansible and the Ansible roles for the
 development environment.
-
-You may wish to change the role fetch mode. Options are ``galaxy`` and
-``git-clone``. The default for this option is ``git-clone``. The mode may
-be changed by setting the ``ANSIBLE_ROLE_FETCH_MODE`` environment variable.
-
-options:
-  :galaxy: Resolve all role dependencies using the ``ansible-galaxy`` resolver
-  :git-clone: Clone all of the role dependencies using native git
 
 Run the following to bootstrap Ansible and the required roles:
 

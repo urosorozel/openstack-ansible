@@ -36,10 +36,6 @@ export TERM=linux
 # Store the clone repo root location
 export OSA_CLONE_DIR="$(readlink -f $(dirname ${0})/..)"
 
-# Set the role fetch mode to git-clone to avoid interactions
-# with the Ansible galaxy API.
-export ANSIBLE_ROLE_FETCH_MODE="git-clone"
-
 # The directory in which the ansible logs will be placed
 export ANSIBLE_LOG_DIR="/openstack/log/ansible-logging"
 
@@ -96,11 +92,7 @@ if [ -n "${DATA_DISK_DEVICE}" ]; then
   export BOOTSTRAP_OPTS="${BOOTSTRAP_OPTS} bootstrap_host_data_disk_device=${DATA_DISK_DEVICE}"
 fi
 
-# If in OpenStack-Infra, set some vars to use the mirror when bootstrapping Ansible
-if [[ -e /etc/ci/mirror_info.sh ]]; then
-  source /etc/ci/mirror_info.sh
-  export PIP_OPTS="--index-url ${NODEPOOL_PYPI_MIRROR} --trusted-host ${NODEPOOL_MIRROR_HOST} --extra-index-url ${NODEPOOL_WHEEL_MIRROR}"
-fi
+load_nodepool_pip_opts
 
 # Bootstrap Ansible
 source "${OSA_CLONE_DIR}/scripts/bootstrap-ansible.sh"
@@ -185,11 +177,7 @@ if [[ "${ACTION}" == "upgrade" ]]; then
     unset UPPER_CONSTRAINTS_FILE
     unset PIP_OPTS
 
-    # If in OpenStack-Infra, set some vars to use the mirror when bootstrapping Ansible
-    if [[ -e /etc/ci/mirror_info.sh ]]; then
-      source /etc/ci/mirror_info.sh
-      export PIP_OPTS="--index-url ${NODEPOOL_PYPI_MIRROR} --trusted-host ${NODEPOOL_MIRROR_HOST} --extra-index-url ${NODEPOOL_WHEEL_MIRROR}"
-    fi
+    load_nodepool_pip_opts
 
     # Source the current scripts-library.sh functions
     source "${OSA_CLONE_DIR}/scripts/scripts-library.sh"

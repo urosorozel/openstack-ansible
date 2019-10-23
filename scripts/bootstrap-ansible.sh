@@ -23,7 +23,7 @@ set -e -u -x
 export HTTP_PROXY=${HTTP_PROXY:-""}
 export HTTPS_PROXY=${HTTPS_PROXY:-""}
 # The Ansible version used for testing
-export ANSIBLE_PACKAGE=${ANSIBLE_PACKAGE:-"ansible==2.5.14"}
+export ANSIBLE_PACKAGE=${ANSIBLE_PACKAGE:-"ansible==2.5.15"}
 export ANSIBLE_ROLE_FILE=${ANSIBLE_ROLE_FILE:-"ansible-role-requirements.yml"}
 export SSH_DIR=${SSH_DIR:-"/root/.ssh"}
 export DEBIAN_FRONTEND=${DEBIAN_FRONTEND:-"noninteractive"}
@@ -33,9 +33,6 @@ export SETUP_ARA=${SETUP_ARA:-"false"}
 # Use pip opts to add options to the pip install command.
 # This can be used to tell it which index to use, etc.
 export PIP_OPTS=${PIP_OPTS:-""}
-
-# Set the role fetch mode to any option [galaxy, git-clone]
-export ANSIBLE_ROLE_FETCH_MODE=${ANSIBLE_ROLE_FETCH_MODE:-git-clone}
 
 export OSA_WRAPPER_BIN="${OSA_WRAPPER_BIN:-scripts/openstack-ansible.sh}"
 
@@ -101,6 +98,9 @@ esac
 # Ensure that our shell knows about the new virtualenv
 hash -r virtualenv
 
+# Load nodepool PIP mirror settings
+load_nodepool_pip_opts
+
 # Ensure we use the HTTPS/HTTP proxy with pip if it is specified
 if [ -n "$HTTPS_PROXY" ]; then
   PIP_OPTS+="--proxy $HTTPS_PROXY"
@@ -143,6 +143,9 @@ PIP_OPTS+=" --constraint ${UPPER_CONSTRAINTS_FILE}"
 # Upgrade pip setuptools and wheel to the appropriate version
 ${PIP_COMMAND} install --isolated ${PIP_OPTS} --upgrade pip setuptools wheel
 
+# Get current code version (this runs at the root of OSA clone)
+CURRENT_OSA_VERSION=$(cd ${OSA_CLONE_DIR}; /opt/ansible-runtime/bin/python setup.py --version)
+
 # Install ansible and the other required packages
 ${PIP_COMMAND} install --isolated ${PIP_OPTS} -r requirements.txt ${ANSIBLE_PACKAGE}
 
@@ -178,6 +181,8 @@ sed -i "s|OSA_PLAYBOOK_PATH|${OSA_PLAYBOOK_PATH}|g" /usr/local/bin/openstack-ans
 # Create openstack ansible wrapper tool
 cp -v ${OSA_WRAPPER_BIN} /usr/local/bin/openstack-ansible
 sed -i "s|OSA_CLONE_DIR|${OSA_CLONE_DIR}|g" /usr/local/bin/openstack-ansible
+# Mark the current OSA version in the wrapper, so we don't need to compute it everytime.
+sed -i "s|CURRENT_OSA_VERSION|${CURRENT_OSA_VERSION}|g" /usr/local/bin/openstack-ansible
 
 # Ensure wrapper tool is executable
 chmod +x /usr/local/bin/openstack-ansible
@@ -189,11 +194,6 @@ echo "openstack-ansible wrapper created."
 
 # Update dependent roles
 if [ -f "${ANSIBLE_ROLE_FILE}" ]; then
-  if [[ "${ANSIBLE_ROLE_FETCH_MODE}" == 'galaxy' ]];then
-    # Pull all required roles.
-    ansible-galaxy install --role-file="${ANSIBLE_ROLE_FILE}" \
-                           --force
-  elif [[ "${ANSIBLE_ROLE_FETCH_MODE}" == 'git-clone' ]];then
     # NOTE(cloudnull): When bootstrapping we don't want ansible to interact
     #                  with our plugins by default. This change will force
     #                  ansible to ignore our plugins during this process.
@@ -223,10 +223,6 @@ if [ -f "${ANSIBLE_ROLE_FILE}" ]; then
     unset ANSIBLE_VARS_PLUGINS
     unset ANSIBLE_STRATEGY_PLUGINS
     unset ANSIBLE_CONFIG
-  else
-    echo "Please set the ANSIBLE_ROLE_FETCH_MODE to either of the following options ['galaxy', 'git-clone']"
-    exit 99
-  fi
 fi
 
 # Install and export the ARA callback plugin

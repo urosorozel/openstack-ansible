@@ -55,6 +55,14 @@ fi
 
 
 ## Functions -----------------------------------------------------------------
+# If in OpenStack-Infra, set some vars to use the mirror when bootstrapping Ansible
+function load_nodepool_pip_opts {
+    if [[ -e /etc/ci/mirror_info.sh ]]; then
+        source /etc/ci/mirror_info.sh
+        export PIP_OPTS="--index-url ${NODEPOOL_PYPI_MIRROR} --trusted-host ${NODEPOOL_MIRROR_HOST} --extra-index-url ${NODEPOOL_WHEEL_MIRROR}"
+    fi
+}
+
 # Determine the distribution we are running on, so that we can configure it
 # appropriately.
 function determine_distro {
@@ -242,8 +250,8 @@ function setup_ara {
   fi
   # Dynamically retrieve the location of the ARA callback so we are able to find
   # it on both py2 and py3
-  ara_location=$(/opt/ansible-runtime/bin/python -c "import os,ara; print(os.path.dirname(ara.__file__))")
-  export ANSIBLE_CALLBACK_PLUGINS="/etc/ansible/roles/plugins/callback:${ara_location}/plugins/callbacks"
+  ara_location=$(/opt/ansible-runtime/bin/python -m ara.setup.callback_plugins)
+  export ANSIBLE_CALLBACK_PLUGINS="/etc/ansible/roles/plugins/callback:${ara_location}"
 }
 
 function run_dstat {
