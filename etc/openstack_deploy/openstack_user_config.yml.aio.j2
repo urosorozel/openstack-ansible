@@ -6,6 +6,9 @@ cidr_networks:
 {% if 'octavia' in bootstrap_host_scenarios_expanded %}
   lbaas: 172.29.252.0/22
 {% endif %}
+{% if 'ironic' in bootstrap_host_services %}
+  ironic: 172.30.0.0/22
+{% endif %}
   container: 172.29.236.0/22
   tunnel: 172.29.240.0/22
   storage: 172.29.244.0/22
@@ -20,6 +23,10 @@ used_ips:
   - "172.29.252.100"
   - "172.29.253.1,172.29.253.200"
 {% endif %}
+{% if 'ironic' in bootstrap_host_services %}
+  - "172.30.0.1,172.30.0.50"
+  - "172.30.0.100,172.30.3.255"
+{% endif %}
   - "172.29.236.1,172.29.236.50"
   - "172.29.236.100"
   - "172.29.240.1,172.29.240.50"
@@ -30,10 +37,12 @@ used_ips:
   - "172.29.248.100"
 
 global_overrides:
-  internal_lb_vip_address: 172.29.236.100
+  #internal_lb_vip_address: 172.29.236.100
+  internal_lb_vip_address: {{ VIPs['internal_hostname'] }}
   # The external IP is quoted simply to ensure that the .aio file can be used as input
   # dynamic inventory testing.
-  external_lb_vip_address: "{{ bootstrap_host_public_address | default(ansible_default_ipv4.address) }}"
+  #external_lb_vip_address: "{{ bootstrap_host_public_address | default(ansible_default_ipv4.address) }}"
+  external_lb_vip_address: {{ VIPs['external_hostname'] }}
   management_bridge: "br-mgmt"
   provider_networks:
     - network:
@@ -103,6 +112,21 @@ global_overrides:
         net_name: "flat"
         group_binds:
           - neutron_linuxbridge_agent
+          - ironic_api_container
+          - ironic_inspector_container
+    - network:
+        group_binds:
+          - neutron_linuxbridge_agent
+          - ironic_api_container        # api included so tftp override works
+          - ironic_inspector_container
+        container_bridge: "br-ironic"
+        host_bind_override: "eth15"
+        container_type: "veth"
+        container_interface: "eth15"
+        type: "flat"
+# This should really be called "host", but os_tempest hard codes it to "flat".
+        net_name: "ironic"
+        ip_from_q: "ironic"
     - network:
         container_bridge: "br-vlan"
         container_type: "veth"

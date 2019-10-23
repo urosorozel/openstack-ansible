@@ -251,6 +251,13 @@ ironic_git_project_group: ironic_all
 ironic_git_track_branch: stable/stein
 
 
+## Ironic inspector
+ironic_inspector_git_repo: https://git.openstack.org/openstack/ironic-inspector
+ironic_inspector_git_install_branch: c7a4ec8a3b332a320444c664d0e5c45ada048a64
+ironic_inspector_git_project_group: ironic_inspector_all
+ironic_inspector_git_track_branch: stable/stein
+
+
 ## Magnum service
 magnum_git_repo: https://opendev.org/openstack/magnum
 magnum_git_install_branch: 1dcedf17314ff111ce5458896a447c2dd2e7f50d  # HEAD as of 09.02.2020
