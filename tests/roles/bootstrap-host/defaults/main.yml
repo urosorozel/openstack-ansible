@@ -202,3 +202,7 @@ bootstrap_host_container_tech: "{{ (bootstrap_host_scenario is search('nspawn'))
 
 # Set the lxc backing store for the job
 lxc_container_backing_store: dir
+
+VIPs:
+  external_hostname: ironic-public.local.net
+  internal_hostname: 172.29.236.100
