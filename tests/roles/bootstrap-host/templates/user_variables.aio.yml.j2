@@ -183,8 +183,8 @@ cache_timeout: {{ cache_timeout }}
 lxc_container_backing_store: "{{ lxc_container_backing_store }}"
 
 ## Always setup tempest, the resources for it, then execute tests
-tempest_install: yes
-tempest_run: yes
+tempest_install: no
+tempest_run: no
 
 {% if nodepool_dir.stat.exists %}
 # Disable chronyd in OpenStack CI

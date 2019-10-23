@@ -255,6 +255,12 @@ ironic_git_project_group: ironic_all
 ironic_git_track_branch: stable/rocky
 
 
+## Ironic inspector
+ironic_inspector_git_repo: https://git.openstack.org/openstack/ironic-inspector
+ironic_inspector_git_install_branch: 9b6133b1f73ff3e3df3af5bfabc6772ddd5389c7 # HEAD of "master" as of 03.12.2018
+ironic_inspector_git_project_group: ironic_inspector_all
+
+
 ## Magnum service
 magnum_git_repo: https://opendev.org/openstack/magnum
 magnum_git_install_branch: 5554abb0a7e378d8232e817558a95924074f16bd  # HEAD as of 06.10.2019
