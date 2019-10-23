@@ -39,6 +39,7 @@ gnocchi_install_method: distro
 heat_install_method: distro
 horizon_install_method: distro
 ironic_install_method: distro
+ironic_inspector_install_method: distro
 karbor_install_method: distro
 keystone_install_method: distro
 keystone_bin: /usr/bin

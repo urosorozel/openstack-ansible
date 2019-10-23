@@ -19,16 +19,18 @@
   user: root
   environment: "{{ deployment_environment_variables | default({}) }}"
   vars_files:
+    - "defaults/repo_packages/openstack_services.yml"
     - "defaults/{{ install_method }}_install.yml"
+  vars:
+   install_method: "source"
+
   tags:
     - ironic-inspector
   pre_tasks:
-    - include: "common-tasks/os-{{ container_tech | default('lxc') }}-container-setup.yml"
-      static: no
+    - include_tasks: "common-tasks/os-{{ container_tech | default('lxc') }}-container-setup.yml"
       when: not is_metal
 
-    - include: common-tasks/unbound-clients.yml
-      static: no
+    - include_tasks: common-tasks/unbound-clients.yml
       when:
         - hostvars['localhost']['resolvconf_enabled'] | bool
   roles:
