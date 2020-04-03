@@ -125,9 +125,9 @@
   trackbranch: stable/train
 - name: os_ironic
   scm: git
-  src: https://opendev.org/openstack/openstack-ansible-os_ironic
-  version: 209e2465af340ecfdcc163d2b619e7d78ee3a0c8
-  trackbranch: stable/train
+  src: https://github.com/urosorozel/openstack-ansible-os_ironic
+  version: 89a7cb8d37547e03924158043ed140e834cd6e24
+  trackbranch: ironic_ipxe
 - name: os_magnum
   scm: git
   src: https://opendev.org/openstack/openstack-ansible-os_magnum
@@ -155,9 +155,9 @@
   trackbranch: stable/train
 - name: os_neutron
   scm: git
-  src: https://opendev.org/openstack/openstack-ansible-os_neutron
-  version: b35e1994ddd01820d25343d4b29df787ffc99f0e
-  trackbranch: stable/train
+  src: https://github.com/urosorozel/openstack-ansible-os_neutron
+  version: 3a9d6c0a1b557e556cbe274920dcb682893c08ce
+  trackbranch: ironic_neutron_agent
 - name: os_nova
   scm: git
   src: https://opendev.org/openstack/openstack-ansible-os_nova
