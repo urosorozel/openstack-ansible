@@ -109,6 +109,12 @@ ironic_dashboard_git_install_branch: 1f091c92058945c2beb5c0db3b40e1722ab661ac  #
 ironic_dashboard_git_project_group: horizon_all
 ironic_dashboard_git_track_branch: stable/train
 
+## Ironic inspector service
+ironic_inspector_git_repo: https://opendev.org/openstack/ironic-inspector
+ironic_inspector_git_install_branch: 1613a6b7ae4b3fbe00276050530434d72dfa1e26
+ironic_inspector_git_project_group: ironic_inspector
+ironic_inspector_git_track_branch: stable/train
+
 ## Horizon Magnum dashboard plugin
 magnum_dashboard_git_repo: https://opendev.org/openstack/magnum-ui
 magnum_dashboard_git_install_branch: 2fd052efa8a5a7ec6669c6e13622213fc43f5721  # HEAD as of 12.07.2020
