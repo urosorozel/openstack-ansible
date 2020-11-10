@@ -125,9 +125,9 @@
   trackbranch: stable/ussuri
 - name: os_ironic
   scm: git
-  src: https://opendev.org/openstack/openstack-ansible-os_ironic
-  version: fac83016c0de7a27b2c8600bff4310b412c09080
-  trackbranch: stable/ussuri
+  src: https://github.com/urosorozel/openstack-ansible-os_ironic
+  version: 85db5ed127d4445160f31ac7a012458bca90f2c7
+  trackbranch: ironic_ipxe_ussuri_stable
 - name: os_magnum
   scm: git
   src: https://opendev.org/openstack/openstack-ansible-os_magnum
