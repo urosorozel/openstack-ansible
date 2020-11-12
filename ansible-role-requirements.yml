@@ -126,8 +126,8 @@
 - name: os_ironic
   scm: git
   src: https://github.com/urosorozel/openstack-ansible-os_ironic
-  version: f80fb0865be2914f1509e92ebab328772b748795
-  trackbranch: ironic_ipxe
+  version: e6f18c64c8cfce7919ac789df45a66b4ace85fb9
+  trackbranch: ironic_ipxe_train
 - name: os_magnum
   scm: git
   src: https://opendev.org/openstack/openstack-ansible-os_magnum
